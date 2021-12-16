@@ -73,53 +73,52 @@ class BinaryTree:
         self.traverse_post_order(add_to_graph)
         graph.view()
 
+def append_pre_order_reverse(node: BinaryNode, _list: List[BinaryNode], level: int = 1):   #na podstawie traverse_pre_order
+    if len(_list) < level:
+        _list.append(node)
+    if node.right_child is not None:
+        append_pre_order_reverse(node.right_child, _list, level + 1)
+    if node.left_child is not None:
+        append_pre_order_reverse(node.left_child, _list, level + 1)
 
 def right_line(tree: BinaryTree) -> List[BinaryNode]:
     _list: List[BinaryNode] = []
     if tree.root is None:
         return _list
 
-    def append_pre_order_reverse(node: BinaryNode, level: int = 0):
-        if len(_list) <= level:
-            _list.append(node)
-        if node.right_child is not None:
-            append_pre_order_reverse(node.right_child, level + 1)
-        if node.left_child is not None:
-            append_pre_order_reverse(node.left_child, level + 1)
-
-    append_pre_order_reverse(tree.root)
+    append_pre_order_reverse(tree.root, _list)
     return _list
 
 
-tree1 = BinaryTree(10)
-tree1.root.add_right_child(2)
-tree1.root.right_child.add_right_child(3)
-tree1.root.right_child.add_left_child(7)
-tree1.root.add_left_child(4)
-tree1.root.left_child.add_left_child(1)
-tree1.root.left_child.add_right_child(5)
-assert tree1.root.value == 10
-assert tree1.root.right_child.value == 2
-assert tree1.root.right_child.is_leaf() is False
-assert tree1.root.left_child.left_child.value == 1
-assert tree1.root.left_child.left_child.is_leaf() is True
-tree1.show()
-
-li: List[BinaryNode] = right_line(tree1)
-for i in li:
-    print(i.value)
-
-# tree2: BinaryTree = BinaryTree(3)
-# tree2.root.add_right_child(7)
-# tree2.root.add_left_child(4)
-# tree2.root.right_child.add_right_child(9)
-# tree2.root.right_child.right_child.add_right_child(6)
-# tree2.root.left_child.add_left_child(1)
-# tree2.root.left_child.add_right_child(2)
-# tree2.root.left_child.left_child.add_right_child(5)
-# tree2.root.left_child.left_child.add_left_child(8)
-# tree2.root.left_child.left_child.left_child.add_right_child(0)
-# tree2.show()
-# li: List[BinaryNode] = right_line(tree2)
+# tree1 = BinaryTree(10)
+# tree1.root.add_right_child(2)
+# tree1.root.right_child.add_right_child(3)
+# tree1.root.right_child.add_left_child(7)
+# tree1.root.add_left_child(4)
+# tree1.root.left_child.add_left_child(1)
+# tree1.root.left_child.add_right_child(5)
+# assert tree1.root.value == 10
+# assert tree1.root.right_child.value == 2
+# assert tree1.root.right_child.is_leaf() is False
+# assert tree1.root.left_child.left_child.value == 1
+# assert tree1.root.left_child.left_child.is_leaf() is True
+# tree1.show()
+#
+# li: List[BinaryNode] = right_line(tree1)
 # for i in li:
 #     print(i.value)
+
+tree2: BinaryTree = BinaryTree(3)
+tree2.root.add_right_child(7)
+tree2.root.add_left_child(4)
+tree2.root.right_child.add_right_child(9)
+tree2.root.right_child.right_child.add_right_child(6)
+tree2.root.left_child.add_left_child(1)
+tree2.root.left_child.add_right_child(2)
+tree2.root.left_child.left_child.add_right_child(5)
+tree2.root.left_child.left_child.add_left_child(8)
+tree2.root.left_child.left_child.left_child.add_right_child(0)
+# tree2.show()
+li: List[BinaryNode] = right_line(tree2)
+for i in li:
+    print(i.value)

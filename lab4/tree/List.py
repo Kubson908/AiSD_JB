@@ -1,5 +1,5 @@
 from typing import Any
-
+from List import Queue
 
 # ZADANIE 1
 class Node:
