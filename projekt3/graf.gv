@@ -1,0 +1,9 @@
+digraph "Graph" {
+	node [shape=circle]
+	1 -> 3 [label=6]
+	1 -> 2 [dir=none]
+	1 -> 5 [label=7]
+	3 -> 4
+	4 -> 5 [label=3 dir=none]
+	2 -> 4
+}
